@@ -1,0 +1,36 @@
+# Project: Project1
+# Makefile created by Dev-C++ 5.1.1.0
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = myFinalProject_private.res
+OBJ      = main.o stageClass.o $(RES)
+LINKOBJ  = main.o stageClass.o $(RES)
+LIBS     = -L"E:/Dev C++/Dev-Cpp/MinGW32/lib" -lalleg -mwindows -lalleg 
+INCS     = -I"E:/Dev C++/Dev-Cpp/MinGW32/include" 
+CXXINCS  = -I"E:/Dev C++/Dev-Cpp/MinGW32/include" 
+BIN      = MYFINA~1.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS   = $(INCS)  
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before MYFINA~1.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "MYFINA~1.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+stageClass.o: stageClass.cpp
+	$(CPP) -c stageClass.cpp -o stageClass.o $(CXXFLAGS)
+
+myFinalProject_private.res: myFinalProject_private.rc 
+	$(WINDRES) -i myFinalProject_private.rc --input-format=rc -o myFinalProject_private.res -O coff 
